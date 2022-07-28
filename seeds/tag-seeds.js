@@ -1,5 +1,7 @@
-const { Tag } = require('../models');
+// import tag from ../models
+import { Tag } from '../models';
 
+// create tagData array
 const tagData = [
   {
     tag_name: 'rock music',
@@ -27,6 +29,8 @@ const tagData = [
   },
 ];
 
+// create variable to add multiple rows at once
 const seedTags = () => Tag.bulkCreate(tagData);
 
+// export seedTags as a model to be used in /seeds/index.js
 module.exports = seedTags;

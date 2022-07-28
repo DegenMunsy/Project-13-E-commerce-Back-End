@@ -3,16 +3,32 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+// get home page then find all product's and include its category and tag in the response
 router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  try {
+    const productData = await Product.findAll({
+      include: [
+        { model: Category }, { model: Tag }
+      ],
+    });
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-// get one product
+// get :id page and find a product by primary key, include its category and tag in the response
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  try {
+    const productData = await Product.findByPk(req.params.id, {
+      include: [
+        { model: Category}, {model: Tag}
+      ],
+    });
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // create new product
@@ -93,4 +109,5 @@ router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
 });
 
+// export router as a model to be used in other files
 module.exports = router;

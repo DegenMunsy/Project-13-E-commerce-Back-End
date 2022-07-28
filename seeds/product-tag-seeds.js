@@ -1,5 +1,7 @@
-const { ProductTag } = require('../models');
+// import ProductTag from ../models
+import { ProductTag } from '../models';
 
+// create productTagData array
 const productTagData = [
   {
     product_id: 1,
@@ -51,6 +53,8 @@ const productTagData = [
   },
 ];
 
+// create variable to add multiple rows at once 
 const seedProductTags = () => ProductTag.bulkCreate(productTagData);
 
+// export seedProductTags as a model to be used in /seeds/index.js
 module.exports = seedProductTags;

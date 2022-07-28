@@ -1,5 +1,7 @@
-const { Category } = require('../models');
+// import Category from ../models
+import { Category } from '../models';
 
+// create categoryData array
 const categoryData = [
   {
     category_name: 'Shirts',
@@ -18,6 +20,8 @@ const categoryData = [
   },
 ];
 
+// create variable to add multiple rows at once
 const seedCategories = () => Category.bulkCreate(categoryData);
 
+// export seedCategories as a model to be used in other files
 module.exports = seedCategories;
